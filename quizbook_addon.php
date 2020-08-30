@@ -32,5 +32,11 @@ function quizbook_addon_error_activar(){
 
 
 // Crea el postype de examenes
-require_once plugin_dir_path(__FILE__) . 'includes/posttypes.php';
+require_once plugin_dir_path(__FILE__) . 'includes/postypes.php';
 register_activation_hook(__FILE__, 'quizbook_examenes_rewrite_flush'); 
+
+
+// Agrega Roles y Permisos a Quizbook Examen
+require_once plugin_dir_path( __FILE__ ) . 'includes/roles.php';
+register_activation_hook( __FILE__, 'quizbook_examenes_agregar_capabilities' );
+register_deactivation_hook( __FILE__, 'quizbook_examenes_remover_capabilities' );

@@ -1,4 +1,7 @@
 <?php
+
+if(! defined('ABSPATH')) exit; // evita la lectura por url
+
 /**
     * Añadir los caps
     */

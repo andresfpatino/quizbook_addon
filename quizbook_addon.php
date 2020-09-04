@@ -44,3 +44,6 @@ register_deactivation_hook( __FILE__, 'quizbook_examenes_remover_capabilities' )
 
 // Añade los metaboxes a quizbook examen
 require_once plugin_dir_path( __FILE__ ) . 'includes/metaboxes.php';
+
+// Añade css y js al plugin
+require_once plugin_dir_path( __FILE__ ) . 'includes/scripts.php';

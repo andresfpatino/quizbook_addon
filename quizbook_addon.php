@@ -50,3 +50,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/scripts.php';
 
 // Añade el shortcode de examentes
 require_once plugin_dir_path( __FILE__ ) . 'includes/shortcode.php';
+
+// Muestra el shortcode con ID en la columna del postype
+require_once plugin_dir_path( __FILE__ ) . 'includes/columnas.php';

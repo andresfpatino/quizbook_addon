@@ -47,3 +47,6 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/metaboxes.php';
 
 // Añade css y js al plugin
 require_once plugin_dir_path( __FILE__ ) . 'includes/scripts.php';
+
+// Añade el shortcode de examentes
+require_once plugin_dir_path( __FILE__ ) . 'includes/shortcode.php';

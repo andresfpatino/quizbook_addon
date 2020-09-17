@@ -7,11 +7,9 @@ function quizbook_examen_agregar_metaboxes(){
 }
 add_action('add_meta_boxes', 'quizbook_examen_agregar_metaboxes');
 
-function quizbook_examen_metaboxes(){ 
+function quizbook_examen_metaboxes($post){ 
 	
-	wp_nonce_field(basename(__FILE__), 'quizbook_examen_nonce');
-	
-	?>
+	wp_nonce_field(basename(__FILE__), 'quizbook_examen_nonce'); ?>
    
 	<table class="form-table">
 		<tr>
@@ -31,10 +29,12 @@ function quizbook_examen_metaboxes(){
 
 					if($preguntas): ?>
 
-						<select data-placeholder="Selecciona las preguntas" name="quizbook_examen[]" class="preguntas_select" multiple tabindex="4">
+						<?php $seleccionadas = maybe_unserialize( get_post_meta($post->ID, 'quizbook_examen', true) ); ?>	
+
+						<select data-placeholder="Selecciona las respuestas" name="quizbook_examen[]" class="preguntas_select" multiple tabindex="4">
 							<option value=""></option>
 							<?php foreach ($preguntas as $pregunta): ?>
-								<option value="<?php echo  $pregunta->ID; ?>"> <?php echo $pregunta->post_title; ?> </option>
+								<option <?php echo in_array($pregunta->ID, $seleccionadas) ? 'selected' : ''; ?>  value="<?php echo  $pregunta->ID; ?>"> <?php echo $pregunta->post_title; ?> </option>
 							<?php endforeach; ?>
 						</select>
 
@@ -43,16 +43,13 @@ function quizbook_examen_metaboxes(){
 						echo '<p> Comienza por agregar preguntas en Quiz </p>';
 
 					endif;
-				?>
-			
+				?>		
 			
 			</td>
 		</tr>
    	</table>
-
 <?php 
 }
-
 
 /* Guarda la Info de los Metaboxes */
 function quizbook_examen_guardar_metaboxes($post_id, $post, $update) {
@@ -76,7 +73,6 @@ function quizbook_examen_guardar_metaboxes($post_id, $post, $update) {
 			$arreglo_respuestas[] = sanitize_text_field( $respuesta );
 		endforeach;
 	}
-
 	update_post_meta($post_id, 'quizbook_examen', maybe_serialize( $arreglo_respuestas ) );
 }
 add_action('save_post', 'quizbook_examen_guardar_metaboxes', 10, 3); // 10 = prioridad 3 = cantidad parametros $post_id, $post, $update 

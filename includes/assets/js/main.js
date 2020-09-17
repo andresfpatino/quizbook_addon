@@ -1,3 +1,3 @@
 (function($){
-    alert('Hola');
+   $('.preguntas_select').chosen();
 })(jQuery);

@@ -15,7 +15,7 @@ function quizbook_examen_mostrar_shortcode_columna($columna){
     if($columna === 'shortcode'){
         $examen_id = get_the_ID();
         echo "<span class='wp-ui-highlight' style='font-family: monospace; white-space: pre; padding: 3px 5px; display: inline-block;'>";
-        echo "[quizbook_examen preguntas='' orden='' id='$examen_id']";
+            echo '[quizbook_examen preguntas="" orden="" id="$examen_id"]';
         echo "</span>";
     }
 }
